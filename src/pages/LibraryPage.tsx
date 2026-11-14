@@ -107,7 +107,7 @@ export function LibraryPage({ index, source }: { index: ReadmeIndex; source: str
   );
 }
 
-function LibraryIndex({ index, source, entries, filter, query }: { index: ReadmeIndex; source: string; entries: ReadmeEntry[]; filter: LibraryFilter; query: string }) {
+function LibraryIndex({ index, source, entries, filter, query }: { index: ReadmeIndex; source: string; entries: ReadonlyArray<ReadmeEntry>; filter: LibraryFilter; query: string }) {
   if (filter !== 'topics') {
     return <>
       <div className="reading-meta"><a href={`${base}index.html`}>Field guide</a><span>/</span><span>Source references</span></div>
@@ -141,7 +141,7 @@ function TopicTile({ entry }: { entry: ReadmeEntry }) {
   return <a className="topic-tile" href={entryHref(entry.id)}><span>{labelFor(entry)}</span><strong>{entry.title}</strong><small>{entry.excerpt || (entry.kind === 'toc' ? 'Listed in the source index; explanatory text is not present in the README.' : 'Open this source chapter.')}</small><Icon name="arrow"/></a>;
 }
 
-function TopicReading({ entry, index, lesson, allEntries }: { entry: ReadmeEntry; index: ReadmeIndex; lesson?: CuratedLesson; allEntries: ReadmeEntry[] }) {
+function TopicReading({ entry, index, lesson, allEntries }: { entry: ReadmeEntry; index: ReadmeIndex; lesson?: CuratedLesson; allEntries: ReadonlyArray<ReadmeEntry> }) {
   const related = allEntries.filter((item) => item.sectionId === entry.sectionId && item.id !== entry.id && item.kind !== 'chapter' && item.kind !== 'overview').slice(0, 8);
   const reference = entry.kind === 'reference' ? entry.references[0] : undefined;
   return <>
