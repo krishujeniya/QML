@@ -56,7 +56,7 @@ test('README topics and references open as in-site reading pages', async ({ page
   await topic.click();
   await expect(page).toHaveURL(/#topic\//);
   await expect(page.getByRole('heading', { level: 1, name: 'Quantum K-Means' })).toBeVisible();
-  await expect(page.getByText('README HEADING · UNREVIEWED')).toBeVisible();
+  await expect(page.locator('.chapter-label')).toHaveText('README HEADING · UNREVIEWED');
   await expect(page.getByText(/not been independently reviewed/)).toBeVisible();
   await page.screenshot({ path: 'test-results/screenshots/topic-desktop.png', fullPage: true });
 
