@@ -5,7 +5,7 @@
   "milestone": "vite-react-pages",
   "iteration": 2,
   "objective": "Migrate the QML learning site to Vite + React without losing README coverage or existing Pages routes.",
-  "status": "implementation-ready-for-ci",
+  "status": "complete",
   "scope_score": 17,
   "scope_denominator": 24,
   "acceptance": {
@@ -13,8 +13,8 @@
     "readme_headings_and_toc_mapped": true,
     "duplicate_anchors_preserved": true,
     "labs_retained": true,
-    "ci_build_and_validation": "pending",
-    "deployment_verified": "pending"
+    "ci_build_and_validation": true,
+    "deployment_verified": true
   },
   "verification": {
     "local_allowed": ["static inspection", "git diff --check"],
@@ -23,4 +23,4 @@
 }
 ```
 
-README coverage, route preservation, and the lab implementations are recorded from static source inspection and checked-in assertions; those assertions have not run yet. CI results are pending for the pushed revision.
+README coverage and lab assertions passed in GitHub Actions run `43582477133` at `6ce168605248871bb29f81bb138f16e969fdd375`. All CI-only checks and the Pages deployment passed for that source revision. See `.agents/state/walkthroughs/vite-react-pages.md`.

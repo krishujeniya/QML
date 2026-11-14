@@ -53,4 +53,15 @@
 - Follow-up accessibility review changed topic scroll behavior to `auto` when reduced motion is requested.
 - Static security scan passed with no matching secrets. The README index and route behavior remain source-inspection claims until Actions runs the checked-in assertions.
 - The lockfile is bootstrapped by the first Actions run and uploaded as `qml-package-lock`; it must be committed before the final repeat run.
-- Current status: implementation staged for CI; no build, test, lint, typecheck, or browser suite has run locally.
+- The generated lockfile was committed after Actions created it; subsequent runs use `npm ci`.
+- Local verification is limited to static inspection, the read-only secret scan, and `git diff --check`. No build, test, lint, typecheck, or browser suite ran locally.
+
+## Gate 5: Verify
+
+- Successful source-code verification: GitHub Actions run `43582477133` on commit `6ce168605248871bb29f81bb138f16e969fdd375`.
+- Passing checks: lockfile install, ESLint, both TypeScript projects, Vitest README/math suites, Vite build and `dist/` integrity check, Playwright desktop/mobile route and lab flows, and GitHub Pages deployment.
+- Independent checker reviewed the final source tree at the same SHA and found no remaining concrete blockers.
+- CI screenshot artifact `qml-ui-evidence` captured home, topic, book, lab, and mobile library pages. Screenshots were inspected after download.
+- Deployment metadata reports `https://krishujeniya.github.io/QML/`, served from `main`.
+- Final walkthrough: `.agents/state/walkthroughs/vite-react-pages.md`.
+- Result: pass for the deployed source revision above. The documentation-only gate record is committed separately and receives its own Actions run.
