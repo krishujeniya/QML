@@ -57,7 +57,8 @@ test('README topics and references open as in-site reading pages', async ({ page
   await expect(page).toHaveURL(/#topic\//);
   await expect(page.getByRole('heading', { level: 1, name: 'Quantum K-Means' })).toBeVisible();
   await expect(page.locator('.chapter-label')).toHaveText('README HEADING · UNREVIEWED');
-  await expect(page.getByText(/not been independently reviewed/)).toBeVisible();
+  await expect(page.getByText('CURATED NOTE · SOURCE LINKS INCLUDED')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Sources for this note' })).toBeVisible();
   await page.screenshot({ path: 'test-results/screenshots/topic-desktop.png', fullPage: true });
 
   await page.setViewportSize({ width: 390, height: 844 });
