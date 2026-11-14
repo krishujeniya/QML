@@ -22,6 +22,8 @@ jobs:
       - name: Validate site entry and content links
         run: |
           test -s index.html
+          test -s learn.html
+          test -s library.html
           grep -q '<title>QML' index.html
           grep -q 'name="description"' index.html
           python3 - <<'PY'
@@ -30,8 +32,10 @@ jobs:
           class Links(HTMLParser):
               def __init__(self): super().__init__(); self.targets=[]
               def handle_starttag(self, tag, attrs):
-                  self.targets.extend(v for k,v in attrs if k in ('href','src') and v and not v.startswith(('http:', 'https:', '#', 'mailto:')))
-          parser=Links(); parser.feed(Path('index.html').read_text())
+                  self.targets.extend(v for k,v in attrs if k in ('href','src') and v and not v.startswith(('http:', 'https:', 'data:', '#', 'mailto:')))
+          parser=Links()
+          for page in ('index.html', 'learn.html', 'library.html'):
+              parser.feed(Path(page).read_text())
           missing=[x for x in parser.targets if not Path(x.split('#')[0]).exists()]
           if missing: raise SystemExit(f'Missing local links: {missing}')
           print(f'Validated {len(parser.targets)} local links')
