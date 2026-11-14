@@ -9,7 +9,6 @@ export interface BlochState {
 
 export function blochState(thetaDegrees: number, phiDegrees: number): BlochState {
   const theta = (thetaDegrees * Math.PI) / 180;
-  const phi = (phiDegrees * Math.PI) / 180;
   const amplitudeZero = Math.cos(theta / 2);
   const amplitudeOne = Math.sin(theta / 2);
   return {

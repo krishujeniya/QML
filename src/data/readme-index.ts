@@ -265,7 +265,7 @@ export function buildReadmeIndex(source: string): ReadmeIndex {
     level: heading.level,
     line: heading.line,
     body: heading.body,
-    excerpt: heading.body.replace(/[#>*_`\[\]!()]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 320),
+    excerpt: heading.body.replace(/[#>*_`[!()]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 320),
     aliases: [...new Set([...heading.aliases, ...(tocAliases.get(heading.id) ?? [])])],
     parentId: heading.parentId,
     references: references.filter((item) => item.topicId === heading.id),
