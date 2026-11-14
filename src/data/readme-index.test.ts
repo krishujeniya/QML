@@ -15,7 +15,7 @@ describe('repository README learning index', () => {
 
   it('retains TOC-only items and duplicate legacy anchors as route aliases', () => {
     expect(index.topicEntries.some((entry) => entry.kind === 'toc')).toBe(true);
-    const duplicate = index.topicEntries.filter((entry) => entry.aliases.includes('quantumconsolidatedresearchpapers'));
+    const duplicate = index.entries.filter((entry) => entry.aliases.includes('quantumconsolidatedresearchpapers'));
     expect(duplicate.length).toBeGreaterThanOrEqual(2);
     expect(new Set(duplicate.map((entry) => entry.id)).size).toBe(duplicate.length);
     expect(index.aliases.get('quantumconsolidatedresearchpapers')).toBe(duplicate[0].id);
