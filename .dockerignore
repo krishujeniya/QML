@@ -1,0 +1,17 @@
+# Version control
+.git/
+.gitignore
+.github/
+
+# Dependencies and caches
+node_modules/
+.npm/
+
+# Build artifacts
+dist/
+
+# Tests & OS
+coverage/
+playwright-report/
+test-results/
+.DS_Store

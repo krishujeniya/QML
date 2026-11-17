@@ -1,0 +1,20 @@
+services:
+  qml:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: qml_app
+    restart: unless-stopped
+    ports:
+      - "4173:80"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:80/healthz"]
+      interval: 20s
+      timeout: 3s
+      retries: 3
+    networks:
+      - qml-net
+
+networks:
+  qml-net:
+    driver: bridge
